@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
+}
+
+def VERSION = '0.1.1'
+def NAME = 'degree-engine'
+def JAVAFX_VERSION = '17.0.2'
+def MAIN_PACKAGE = 'org.softwareengine'
+def MAIN_CLASS = MAIN_PACKAGE + '.Main'
+def MAIN_MODULE = 'degree'
+
+compileJava.options.encoding = 'UTF-8'
+
+javafx {
+    version = JAVAFX_VERSION
+    modules = ['javafx.graphics', 'javafx.controls']
+}
+
+application {
+    group = MAIN_PACKAGE
+    version = VERSION
+    applicationName = NAME
+    mainModule = MAIN_MODULE
+    mainClass = MAIN_CLASS
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+    implementation 'com.jfoenix:jfoenix:9.0.10'
+}
+
+test {
+    useJUnitPlatform()
+}
